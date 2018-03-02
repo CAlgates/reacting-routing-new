@@ -1,0 +1,47 @@
+type the command in the cmd prompt, where you the project.
+  npm init
+install webpack and webpack-dev-server
+  npm install webpack webpack-dev-server --save
+
+install react and react-dom
+  npm install react react-dom --save
+
+install babel etc.
+  npm install babel-core babel-loader babel-preset-react babel-preset-es2015 --save
+
+add start scripts to package.json
+
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "webpack-dev-server --hot"
+    }
+    
+touch webpack.config.js
+    var config = {
+      entry: './main.js',
+
+      output: {
+        path: './',
+        filename: 'index.js'
+      },
+
+      devServer: {
+        inline: true,
+        port: 7777
+      },
+
+      module: {
+        loaders: [
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+            query: {
+              presets: ['es2015', 'react']
+            }
+          }
+        ]
+      }
+    }
+
+    module.exports = config;
